@@ -1,0 +1,11 @@
+Query: 0
+Nearest neighbor-1: 53843
+distanceLSH: 5244
+distanceTrue: 5244
+Nearest neighbor-2: 47003
+distanceLSH: 7028
+distanceTrue: 6539
+tLSH: 0.0625
+tTrue: 0.15625
+
+R-near neighbors:

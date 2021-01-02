@@ -70,8 +70,8 @@ int main(int argc, char** argv){
             if (pr!=NULL) probes = atoi(pr);
             if (r!=NULL) R = atof(r);
 
-            int magicNumber = 0,numberOfImages = 0,numberOfRows = 0,numberOfColumns = 0, img=0;
-            int numOfpixels;
+            unsigned int magicNumber = 0,numberOfImages = 0,numberOfRows = 0,numberOfColumns = 0, img=0;
+            unsigned int numOfpixels;
 
             //Open train file
             fstream trainInput(d);
@@ -142,7 +142,7 @@ int main(int argc, char** argv){
                     return 0;
                 }
                 double cubeAnnTime, cubeRngTime, trueAnnTime, trueRngTime;
-                for(int i=0; i<10; i++){
+                for(int i=0; i<numberOfImages; i++){
                     vector<Neighbor> ANNneighbors;
                     vector<Neighbor> RNGneighbors;
                     vector<double> ANNtrueDist;

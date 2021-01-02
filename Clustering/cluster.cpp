@@ -59,7 +59,7 @@ int main(int argc, char** argv){
             /* PROGRAM STARTS HERE */
             clock_t tStart = clock();
 
-            int magicNumber = 0, numberOfImages = 0, numberOfRows = 0, numberOfColumns = 0, img=0;
+            unsigned int magicNumber = 0, numberOfImages = 0, numberOfRows = 0, numberOfColumns = 0, img=0;
 
             //Open train file
             fstream trainInput(I);

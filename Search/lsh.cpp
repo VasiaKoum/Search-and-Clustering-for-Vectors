@@ -63,25 +63,34 @@ int main(int argc, char** argv){
             if (n!=NULL) N = atoi(n);
             if (r!=NULL) R = atof(r);
 
-            int magicNumber = 0,numberOfImages = 0,numberOfRows = 0,numberOfColumns = 0, img=0;
+            unsigned int magicNumber = 0,numberOfImages = 0,numberOfRows = 0,numberOfColumns = 0, img=0;
             int numOfpixels;
 
             //Open train file
-            fstream trainInput(d);
+            ifstream trainInput;
+            // if(!trainInput.is_open()){
+            //     cerr<<"Failed to open input data."<<endl;
+            //     return(0);
+            // }
+            
+            trainInput.open(d, std::ios::binary);
             if(!trainInput.is_open()){
                 cerr<<"Failed to open input data."<<endl;
                 return(0);
             }
+            cout << "check" << endl;
             trainInput.read((char*)&magicNumber, 4);
             trainInput.read((char*)&numberOfImages, 4);
             trainInput.read((char*)&numberOfRows, 4);
             trainInput.read((char*)&numberOfColumns, 4);
-
+            cout << numberOfImages << endl;
             //Convert intergers from Big Endian to Little Endian
             magicNumber = SWAP_INT32(magicNumber);
             numberOfImages = SWAP_INT32(numberOfImages);
             numberOfRows = SWAP_INT32(numberOfRows);
             numberOfColumns = SWAP_INT32(numberOfColumns);
+            cout << numberOfImages << endl;
+
             Dataset trainSet(magicNumber, numberOfImages, numberOfColumns, numberOfRows);
             trainInput.read((char*)trainSet.imageAt(0), (trainSet.getNumberOfPixels())*(trainSet.getNumberOfImages()));
             trainInput.close();
@@ -143,7 +152,7 @@ int main(int argc, char** argv){
                 }
                 clock_t lshAnnStart, lshRngStart, AnnTrueStart, RngTrueStart;
                 double lshAnnTime, lshRngTime, trueAnnTime, trueRngTime;
-                for(int index=0; index<10; index++){
+                for(int index=0; index<numberOfImages; index++){
                     vector<Neighbor> ANNneighbors;
                     vector<Neighbor> RNGneighbors;
                     vector<double> ANNtrueDist;
